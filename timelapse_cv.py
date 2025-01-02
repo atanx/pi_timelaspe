@@ -141,8 +141,9 @@ class TimelapseCamera:
             filename = f'timelapse_{timestamp}.jpg'
             filepath = os.path.join(self.temp_dir, filename)
             
-            # 保存图片
-            cv2.imwrite(filepath, frame)
+            # 保存图片，逆时针旋转90度
+            rotated = cv2.rotate(frame, cv2.ROTATE_90_COUNTERCLOCKWISE)
+            cv2.imwrite(filepath, rotated)
             self.logger.info(f"照片拍摄成功: {filename}")
             
             return filepath, filename
