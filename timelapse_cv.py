@@ -213,6 +213,7 @@ class TimelapseCamera:
             return True
         except Exception as e:
             self.logger.error(f"执行失败: {str(e)}")
+            self.send_feishu_msg(f"执行失败: {str(e)}")
             return False
         
     def close(self):
